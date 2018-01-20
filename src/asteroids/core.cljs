@@ -1,28 +1,22 @@
 (ns asteroids.core
   (:require [asteroids.draw :refer [draw]]
-            [asteroids.art :as art]))
+            [asteroids.art :as art])
+  (:use [asteroids.comps :only [position display]]))
 
 (enable-console-print!)
 
 ; TODO: bring in looping
 
 ; TODO: store this stuff in a global state?
-(def hero {:pos {:x 200
-                 :y 200
-                 :a 20}
-           :art {:points art/hero
-                 :color "red"}})
+; TODO: clean up further
+(def hero {:pos (position 200 200 20)
+           :display (display art/hero)})
+(print hero)
 
-(def asteroids [{:pos {:x 400
-                       :y 200
-                       :a 0}
-                :art {:points (art/asteroid 30 0)
-                      :color "red"}}
-                {:pos {:x 500
-                       :y 200
-                       :a 0}
-                 :art {:points (art/asteroid 30 1)
-                       :color "red"}}])
+(def asteroids [{:pos (position 300 200)
+                 :display (display (art/asteroid 30 0))}
+                {:pos (position 400 200)
+                 :display (display (art/asteroid 30 1))}])
 
 (defn set-stage-fullscreen [canvas]
   (let [width (.-innerWidth js/window)
@@ -35,7 +29,7 @@
         ctx (.getContext canvas "2d")]
     (set-stage-fullscreen canvas)
     (set! (.-lineWidth ctx) 2)
-    (draw ctx (:pos hero) (:art hero))
-    (doseq [a asteroids] (draw ctx (:pos a) (:art a) true))))
+    (draw ctx (:pos hero) (:display hero))
+    (doseq [a asteroids] (draw ctx (:pos a) (:display a) true))))
 
 (init)
