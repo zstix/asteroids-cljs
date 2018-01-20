@@ -16,7 +16,14 @@
                  {:x size :y size}
                  {:x (* 1.5 size) :y 0}
                  {:x (* 1.5 size) :y (* -0.5 size)}]
-                [{:x 10 :y 10}
-                 {:x 20 :y 20}
-                 {:x -10 :y 30}]]]
+                [{:x (* 0.7 size) :y (* -1.5 size)}
+                 {:x 0 :y (* -1 size)}
+                 {:x (* -0.7 size) :y (* -1.5 size)}
+                 {:x (* -1.5 size) :y (* -0.3 size)}
+                 {:x (* -1.3 size) :y (* 1.3 size)}
+                 {:x (* -0.7 size) :y (* 1.5 size)}
+                 {:x (* 0.7 size) :y (* 1.5 size)}
+                 {:x (* 1.5 size) :y size}
+                 {:x (* 1.3 size) :y (* 0.3 size)}
+                 {:x (* 1.5 size) :y 0}]]]
     (points n)))

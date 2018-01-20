@@ -6,6 +6,7 @@
 
 ; TODO: bring in looping
 
+; TODO: store this stuff in a global state?
 (def hero {:pos {:x 200
                  :y 200
                  :a 20}
@@ -17,8 +18,8 @@
                        :a 0}
                 :art {:points (art/asteroid 30 0)
                       :color "red"}}
-                {:pos {:x 800
-                       :y 300
+                {:pos {:x 500
+                       :y 200
                        :a 0}
                  :art {:points (art/asteroid 30 1)
                        :color "red"}}])
