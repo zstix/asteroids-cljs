@@ -17,6 +17,7 @@
   (let [canvas (.getElementById js/document "world")
         ctx (.getContext canvas "2d")]
     (set-stage-fullscreen canvas)
+    (set! (.-lineWidth ctx) 2)
     (set! (.-strokeStyle ctx) "red")
     (draw/asteroid ctx {:x 400 :y 200 :rotation 0})
     (draw/hero ctx hero)))
