@@ -5,10 +5,7 @@
 
 ; TODO: bring in looping
 
-; TODO: abstract this to utils
-(defn deg-to-rad [deg] (* deg (/ Math/PI 180)))
-
-(def hero {:x 200 :y 200 :size 40 :angle (deg-to-rad 20)})
+(def hero {:x 200 :y 200 :rotation 20})
 
 (defn set-stage-fullscreen [canvas]
   (let [width (.-innerWidth js/window)
@@ -21,6 +18,7 @@
         ctx (.getContext canvas "2d")]
     (set-stage-fullscreen canvas)
     (set! (.-strokeStyle ctx) "red")
+    (draw/asteroid ctx {:x 400 :y 200 :rotation 0})
     (draw/hero ctx hero)))
 
 (init)
