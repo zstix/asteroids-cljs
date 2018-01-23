@@ -1,20 +1,20 @@
 (ns asteroids.core
   (:require [asteroids.draw :refer [draw]]
             [asteroids.art :as art])
-  (:use [asteroids.comps :only [pos display]]))
+  (:use [asteroids.comps :only [entity pos display]]))
 
 (enable-console-print!)
 
 ; TODO: bring in looping
 
 ; TODO: store this stuff in a global state?
-(def hero {:pos (pos 200 200 20)
-           :display (display art/hero)})
+(def hero (entity [(pos 200 200 20)
+                   (display art/hero)]))
 
-(def asteroids [{:pos (pos 300 200)
-                 :display (display (art/asteroid 30 0))}
-                {:pos (pos 400 200)
-                 :display (display (art/asteroid 30 1))}])
+(def asteroids [(entity [(pos 300 200)
+                         (display (art/asteroid 30 0))])
+                (entity [(pos 400 200)
+                         (display (art/asteroid 30 1))])])
 
 (defn set-stage-fullscreen [canvas]
   (let [width (.-innerWidth js/window)
