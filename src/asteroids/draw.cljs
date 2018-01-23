@@ -27,8 +27,8 @@
     (.restore ctx)))
 
 (defn draw [ctx
-            {:keys [x y a]}
-            {:keys [points color]}
+            {{:keys [x y a]} :pos
+             {:keys [points color]} :display}
             & debug]
   (.save ctx)
   (set! (.-strokeStyle ctx) color)

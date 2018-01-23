@@ -1,6 +1,6 @@
 (ns asteroids.comps)
 
-(defn position [x y & [a]]
+(defn pos [x y & [a]]
   (let [a (or a 0)]
     {:x x
      :y y
