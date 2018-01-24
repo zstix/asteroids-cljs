@@ -28,8 +28,8 @@
 
 (defn draw [ctx
             {{:keys [x y a]} :pos
-             {:keys [points color]} :display}
-            & debug]
+             {:keys [points color]} :display
+             :keys [debug]}]
   (.save ctx)
   (set! (.-strokeStyle ctx) color)
   (.translate ctx x y)
