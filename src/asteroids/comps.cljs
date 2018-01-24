@@ -1,19 +1,14 @@
-(ns asteroids.comps)
+(ns asteroids.comps
+  (:require-macros [asteroids.lib :refer [component]]))
 
-; NOTE: this might be best moved into a different file
+; TODO: find a way to avoid using this
 (defn entity [comps] (reduce conj comps))
 
-; TODO: abstract component creation to a macro?
+(component pos [x y & [a]]
+           :x x
+           :y y
+           :a (or a 0))
 
-(defn pos [x y & [a]]
-  (let [a (or a 0)]
-    {(keyword "pos")
-     {:x x
-      :y y
-      :a a}}))
-
-(defn display [points & [color]]
-  (let [color (or color "red")]
-    {(keyword "display")
-     {:points points
-      :color color}}))
+(component display [points & [color]]
+           :points points
+           :color (or color "red"))
