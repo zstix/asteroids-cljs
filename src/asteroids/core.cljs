@@ -9,12 +9,6 @@
 (defonce canvas (.getElementById js/document "world"))
 (defonce ctx (.getContext canvas "2d"))
 
-(set! (.-width canvas) (.-innerWidth js/window))
-(set! (.-height canvas) (.-innerHeight js/window))
-(set! (.-lineWidth ctx) 2)
-
-; TODO: bring in looping
-
 (def state [(entity [(pos 200 200 20)
                      (display hero)])
             (entity [(pos 300 200)
@@ -24,7 +18,12 @@
                      (display (asteroid 30 1))
                      (debug)])])
 
+; TODO: bring in looping
 (defn init []
-  (doseq [e state] (draw ctx e)))
+  (do
+    (set! (.-width canvas) (.-innerWidth js/window))
+    (set! (.-height canvas) (.-innerHeight js/window))
+    (set! (.-lineWidth ctx) 2)
+    (doseq [e state] (draw ctx e))))
 
 (init)
