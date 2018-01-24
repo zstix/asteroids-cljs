@@ -6,6 +6,13 @@
 
 (enable-console-print!)
 
+(defonce canvas (.getElementById js/document "world"))
+(defonce ctx (.getContext canvas "2d"))
+
+(set! (.-width canvas) (.-innerWidth js/window))
+(set! (.-height canvas) (.-innerHeight js/window))
+(set! (.-lineWidth ctx) 2)
+
 ; TODO: bring in looping
 
 (def state [(entity [(pos 200 200 20)
@@ -17,17 +24,7 @@
                      (display (asteroid 30 1))
                      (debug)])])
 
-(defn set-stage-fullscreen [canvas]
-  (let [width (.-innerWidth js/window)
-        height (.-innerHeight js/window)]
-    (set! (.-width canvas) width)
-    (set! (.-height canvas) height)))
-
 (defn init []
-  (let [canvas (.getElementById js/document "world")
-        ctx (.getContext canvas "2d")]
-    (set-stage-fullscreen canvas)
-    (set! (.-lineWidth ctx) 2)
-    (doseq [e state] (draw ctx e))))
+  (doseq [e state] (draw ctx e)))
 
 (init)
