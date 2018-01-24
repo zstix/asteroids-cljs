@@ -1,6 +1,8 @@
 (ns asteroids.comps
   (:require-macros [asteroids.lib :refer [component]]))
 
+(defn entity [comps] (reduce conj comps))
+
 (component pos [x y & [a]]
            :x x
            :y y

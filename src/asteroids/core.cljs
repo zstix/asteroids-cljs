@@ -1,27 +1,21 @@
 (ns asteroids.core
   (:require [asteroids.draw :refer [draw]]
-            [asteroids.art :refer [hero asteroid]])
+            [asteroids.art :refer [hero asteroid]]
+            [asteroids.comps :refer [entity]])
   (:use [asteroids.comps :only [pos display debug]]))
 
 (enable-console-print!)
 
 ; TODO: bring in looping
 
-(def state [[(pos 200 200 20)
-             (display hero)]
-            [(pos 300 200)
-             (display (asteroid 30 0))
-             (debug)]
-            [(pos 400 200)
-             (display (asteroid 30 1))
-             (debug)]])
-
-(defn get-entities [state]
-  (reduce
-    (fn [all e]
-      (conj all (reduce conj e)))
-    []
-    state))
+(def state [(entity [(pos 200 200 20)
+                     (display hero)])
+            (entity [(pos 300 200)
+                     (display (asteroid 30 0))
+                     (debug)])
+            (entity [(pos 400 200)
+                     (display (asteroid 30 1))
+                     (debug)])])
 
 (defn set-stage-fullscreen [canvas]
   (let [width (.-innerWidth js/window)
@@ -31,10 +25,9 @@
 
 (defn init []
   (let [canvas (.getElementById js/document "world")
-        ctx (.getContext canvas "2d")
-        st (get-entities state)]
+        ctx (.getContext canvas "2d")]
     (set-stage-fullscreen canvas)
     (set! (.-lineWidth ctx) 2)
-    (doseq [e st] (draw ctx e))))
+    (doseq [e state] (draw ctx e))))
 
 (init)
