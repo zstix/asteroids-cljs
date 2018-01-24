@@ -1,6 +1,6 @@
 (ns asteroids.core
   (:require [asteroids.draw :refer [draw]]
-            [asteroids.art :as art])
+            [asteroids.art :refer [hero asteroid]])
   (:use [asteroids.comps :only [entity pos display debug]]))
 
 (enable-console-print!)
@@ -8,12 +8,12 @@
 ; TODO: bring in looping
 
 (def state [(entity [(pos 200 200 20)
-                     (display art/hero)])
+                     (display hero)])
             (entity [(pos 300 200)
-                     (display (art/asteroid 30 0))
+                     (display (asteroid 30 0))
                      (debug)])
             (entity [(pos 400 200)
-                     (display (art/asteroid 30 1))
+                     (display (asteroid 30 1))
                      (debug)])])
 
 (print (first state))
