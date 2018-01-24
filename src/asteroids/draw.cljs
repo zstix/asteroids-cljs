@@ -26,14 +26,14 @@
     (.stroke ctx)
     (.restore ctx)))
 
-(defn draw [ctx
-            {{:keys [x y a]} :pos
-             {:keys [points color]} :display
-             :keys [debug]}]
-  (.save ctx)
-  (set! (.-strokeStyle ctx) color)
-  (.translate ctx x y)
-  (.rotate ctx (deg-to-rad a))
-  (if debug (draw-debug ctx x y points))
-  (draw-shape ctx points)
-  (.restore ctx))
+(defn draw [ctx e]
+  (let [{:keys [pos display debug]} e
+        {:keys [x y a]} pos
+        {:keys [points color]} display]
+    (.save ctx)
+    (set! (.-strokeStyle ctx) color)
+    (.translate ctx x y)
+    (.rotate ctx (deg-to-rad a))
+    (if debug (draw-debug ctx x y points))
+    (draw-shape ctx points)
+    (.restore ctx)))
