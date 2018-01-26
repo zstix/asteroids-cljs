@@ -8,6 +8,8 @@
 
 (defonce canvas (.getElementById js/document "world"))
 (defonce ctx (.getContext canvas "2d"))
+(defonce world {:width (.-innerWidth js/window)
+                :height (.-innerHeight js/window)})
 
 (def state [(entity [(pos 200 200 20)
                      (display hero)])
@@ -21,8 +23,8 @@
 ; TODO: bring in looping
 (defn init []
   (do
-    (set! (.-width canvas) (.-innerWidth js/window))
-    (set! (.-height canvas) (.-innerHeight js/window))
+    (set! (.-width canvas) (:width world))
+    (set! (.-height canvas) (:height world))
     (set! (.-lineWidth ctx) 2)
     (doseq [e state] (draw ctx e))))
 
