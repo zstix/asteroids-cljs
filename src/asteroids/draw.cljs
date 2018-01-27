@@ -1,5 +1,7 @@
-(ns asteroids.draw)
-
+(ns asteroids.draw
+  (:require
+    [asteroids.lib.util :refer [deg-to-rad
+                                get-bounds]]))
 
 ; TODO: create a macro to make these
 (defn save [ctx]
@@ -41,19 +43,6 @@
 (defn rotate [ctx a]
   (.rotate ctx a)
   ctx)
-
-
-; TODO: abstract this to utils
-(defn deg-to-rad [deg] (* deg (/ Math/PI 180)))
-
-; TODO: abstract this to utils
-(defn get-bounds [points]
-  (reduce
-    (fn [size point]
-      (max size
-           (Math/abs (:x point))
-           (Math/abs (:y point))))
-    0 points))
 
 (defn draw-shape [ctx points]
   (let [start (last points)]

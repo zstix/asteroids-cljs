@@ -1,7 +1,7 @@
 (ns asteroids.core
+  (:require-macros [asteroids.lib.macros :refer [entity]])
   (:require [asteroids.draw :refer [draw]]
-            [asteroids.art :refer [hero asteroid]]
-            [asteroids.comps :refer [entity]])
+            [asteroids.art :refer [hero asteroid]])
   (:use [asteroids.comps :only [pos display debug]]))
 
 (enable-console-print!)
