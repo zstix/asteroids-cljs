@@ -1,8 +1,8 @@
 (ns asteroids.lib.macros)
 
-(defmacro component [name params & body]
-  `(defn ~name ~params
-     (hash-map ~(keyword name)
+(defmacro component [n params & body]
+  `(defn ~n ~params
+     (hash-map ~(keyword n)
                (hash-map ~@body))))
 
 (defmacro entity [comps]

@@ -1,48 +1,17 @@
 (ns asteroids.draw
-  (:require
-    [asteroids.lib.util :refer [deg-to-rad
-                                get-bounds]]))
+  (:require [asteroids.lib.util :refer [deg-to-rad
+                                        get-bounds]]))
 
-; TODO: create a macro to make these
-(defn save [ctx]
-  (.save ctx)
-  ctx)
-
-(defn restore [ctx]
-  (.restore ctx)
-  ctx)
-
-(defn begin-path [ctx]
-  (.beginPath ctx)
-  ctx)
-
-(defn stroke [ctx]
-  (.stroke ctx)
-  ctx)
-
-(defn move-to [ctx x y]
-  (.moveTo ctx x y)
-  ctx)
-
-(defn line-to [ctx x y]
-  (.lineTo ctx x y)
-  ctx)
-
-(defn arc [ctx x y r a1 a2]
-  (.arc ctx x y r a1 a2)
-  ctx)
-
-(defn set-stroke [ctx color]
-  (set! (.-strokeStyle ctx) color)
-  ctx)
-
-(defn translate [ctx x y]
-  (.translate ctx x y)
-  ctx)
-
-(defn rotate [ctx a]
-  (.rotate ctx a)
-  ctx)
+(defn save [ctx] (.save ctx) ctx)
+(defn restore [ctx] (.restore ctx) ctx)
+(defn begin-path [ctx] (.beginPath ctx) ctx)
+(defn stroke [ctx] (.stroke ctx) ctx)
+(defn move-to [ctx x y] (.moveTo ctx x y) ctx)
+(defn line-to [ctx x y] (.lineTo ctx x y) ctx)
+(defn arc [ctx x y r a1 a2] (.arc ctx x y r a1 a2) ctx)
+(defn set-stroke [ctx color] (set! (.-strokeStyle ctx) color) ctx)
+(defn translate [ctx x y] (.translate ctx x y) ctx)
+(defn rotate [ctx a] (.rotate ctx a) ctx)
 
 (defn draw-shape [ctx points]
   (let [start (last points)]
