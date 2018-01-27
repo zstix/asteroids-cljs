@@ -6,6 +6,11 @@
            :y y
            :a (or a 0))
 
+(component vel [x y & [a]]
+           :x x
+           :y y
+           :a (or a 0))
+
 (component art [points & [color]]
            :points points
            :color (or color "red"))

@@ -2,7 +2,7 @@
   (:require [cljs.core.async :refer [<! timeout]]
             [asteroids.draw :refer [draw]]
             [asteroids.assets :refer [hero asteroid]]
-            [asteroids.comps :refer [pos art debug renderable]]
+            [asteroids.comps :refer [pos vel art debug renderable]]
             [asteroids.lib.util :refer [filter-entities]])
   (:require-macros [cljs.core.async.macros :refer [go]]
                    [asteroids.lib.macros :refer [entity]]))
@@ -20,13 +20,13 @@
                         (art hero)
                         (renderable draw)])
                (entity [(pos 300 200)
+                        (vel 5 5)
                         (art (asteroid 30 0))
                         (renderable draw)])
                (entity [(pos 400 200)
                         (art (asteroid 30 1))])
                (entity [(pos 500 200)
-                        (art (asteroid 30 2))
-                        (renderable draw)])
+                        (art (asteroid 30 2))])
                (entity [(pos 600 200)
                         (art (asteroid 30 3))])])
 
@@ -41,6 +41,7 @@
 
 ;; ----- UPDATE ----- ;;
 
+; TODO: use the velocity component to update the state
 (defn update-game [state] state)
 
 ;; ----- RENDER ----- ;;
