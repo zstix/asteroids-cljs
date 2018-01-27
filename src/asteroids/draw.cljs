@@ -2,6 +2,7 @@
   (:require [asteroids.lib.util :refer [deg-to-rad
                                         get-bounds]]))
 
+; TODO: create a macro to simplify this
 (defn save [ctx] (.save ctx) ctx)
 (defn restore [ctx] (.restore ctx) ctx)
 (defn begin-path [ctx] (.beginPath ctx) ctx)
