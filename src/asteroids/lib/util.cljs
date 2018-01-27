@@ -11,3 +11,11 @@
            (Math/abs (:x point))
            (Math/abs (:y point))))
     0 points))
+
+(defn filter-entities
+  "Gets the entities with a provided component key"
+  [entities component]
+  (filter
+    (fn [entity]
+      (contains? entity (keyword component)))
+    entities))

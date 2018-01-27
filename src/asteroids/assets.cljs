@@ -1,4 +1,4 @@
-(ns asteroids.art)
+(ns asteroids.assets)
 
 (def hero [{:x 0 :y -20}
            {:x 16 :y 20}

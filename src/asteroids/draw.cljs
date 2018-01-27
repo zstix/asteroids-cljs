@@ -38,9 +38,9 @@
   ctx)
 
 (defn draw [ctx e]
-  (let [{:keys [pos display debug]} e
+  (let [{:keys [pos art debug]} e
         {:keys [x y a]} pos
-        {:keys [points color]} display]
+        {:keys [points color]} art]
     (-> ctx
         (save)
         (set-stroke color)

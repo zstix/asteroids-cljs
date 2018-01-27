@@ -6,8 +6,11 @@
            :y y
            :a (or a 0))
 
-(component display [points & [color]]
+(component art [points & [color]]
            :points points
            :color (or color "red"))
 
 (component debug [])
+
+(component renderable [fn]
+           :fn fn)
