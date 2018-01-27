@@ -27,7 +27,7 @@
         full-circle (* 2 Math/PI)]
     (-> ctx
         (save)
-        (set-stroke "grey")
+        (set-stroke "rgba(100, 100, 100, 0.5)")
         (begin-path)
         (arc 0 0 1 0 full-circle)
         (stroke)

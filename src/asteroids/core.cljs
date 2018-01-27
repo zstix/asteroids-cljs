@@ -14,11 +14,13 @@
 (def state [(entity [(pos 200 200 20)
                      (display hero)])
             (entity [(pos 300 200)
-                     (display (asteroid 30 0))
-                     (debug)])
+                     (display (asteroid 30 0))])
             (entity [(pos 400 200)
-                     (display (asteroid 30 1))
-                     (debug)])])
+                     (display (asteroid 30 1))])
+            (entity [(pos 500 200)
+                     (display (asteroid 30 2))])
+            (entity [(pos 600 200)
+                     (display (asteroid 30 3))])])
 
 ; TODO: bring in looping
 (defn init []
