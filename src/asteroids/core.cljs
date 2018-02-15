@@ -16,17 +16,25 @@
 
 ;; ----- STATE ----- ;;
 
+; TODO: better positioning / etc
+(defn rand-speed [size] (- (rand size) (/ size 2)))
 (def entities [(entity [(pos 200 200 20)
                         (art hero)])
-               (entity [(pos 300 200)
-                        (vel 0.1 0.1)
+               (entity [(pos (rand (:width world)) (rand (:height world)))
+                        (vel (rand-speed 0.3) (rand-speed 0.3) (rand-speed 0.3))
                         (art (asteroid 30 0))
                         (renderable draw)])
-               (entity [(pos 400 200)
+               (entity [(pos (rand (:width world)) (rand (:height world)))
+                        (vel (rand-speed 0.3) (rand-speed 0.3) (rand-speed 0.3))
+                        (renderable draw)
                         (art (asteroid 30 1))])
-               (entity [(pos 500 200)
+               (entity [(pos (rand (:width world)) (rand (:height world)))
+                        (vel (rand-speed 0.3) (rand-speed 0.3) (rand-speed 0.3))
+                        (renderable draw)
                         (art (asteroid 30 2))])
-               (entity [(pos 600 200)
+               (entity [(pos (rand (:width world)) (rand (:height world)))
+                        (vel (rand-speed 0.3) (rand-speed 0.3) (rand-speed 0.3))
+                        (renderable draw)
                         (art (asteroid 30 3))])])
 
 ; TODO: can we move these to components?
@@ -40,14 +48,20 @@
 
 ;; ----- UPDATE ----- ;;
 
+; TODO: make bound componenent and check for that
 (defn apply-vel [entities]
   (map (fn [e]
          (let [{:keys [pos vel]} e
+               {:keys [height width]} world
                x (+ (:x pos) (:x vel))
                y (+ (:y pos) (:y vel))
-               a (+ (:a pos) (:a vel))]
+               a (+ (:a pos) (:a vel))
+               new-x (if (> x width) (- x width) 
+                       (if (< x 0) (- width (Math/abs x)) x))
+               new-y (if (> y height) (- y height) 
+                       (if (< y 0) (- height (Math/abs y)) y))]
            (if (contains? e :vel)
-             (assoc e :pos {:x x :y y :a a})
+             (assoc e :pos {:x new-x :y new-y :a a})
              e)))
        entities))
 
