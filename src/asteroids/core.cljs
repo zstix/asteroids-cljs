@@ -17,10 +17,9 @@
 ;; ----- STATE ----- ;;
 
 (def entities [(entity [(pos 200 200 20)
-                        (art hero)
-                        (renderable draw)])
+                        (art hero)])
                (entity [(pos 300 200)
-                        (vel 5 5)
+                        (vel 0.1 0.1)
                         (art (asteroid 30 0))
                         (renderable draw)])
                (entity [(pos 400 200)
@@ -41,8 +40,21 @@
 
 ;; ----- UPDATE ----- ;;
 
-; TODO: use the velocity component to update the state
-(defn update-game [state] state)
+(defn apply-vel [entities]
+  (map (fn [e]
+         (let [{:keys [pos vel]} e
+               x (+ (:x pos) (:x vel))
+               y (+ (:y pos) (:y vel))
+               a (+ (:a pos) (:a vel))]
+           (if (contains? e :vel)
+             (assoc e :pos {:x x :y y :a a})
+             e)))
+       entities))
+
+(defn update-game [state]
+  (let [all-e (:entities state)]
+    (-> state
+        (assoc :entities (apply-vel all-e)))))
 
 ;; ----- RENDER ----- ;;
 
